@@ -3,20 +3,14 @@ on: ['push']
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [  '18','20' ]
     name: Test and Build package on Node ${{ matrix.node }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node }}
+        node-version: latest
         check-latest: true
         cache: yarn
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: Download dependencies
       run: yarn install --silent  --immutable
 
