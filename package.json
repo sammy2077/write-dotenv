@@ -1,17 +1,21 @@
 {
   "name": "write-dotenv",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Accepts and updates the .env or .env.local file",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "jest",
     "build": "rm -rf ./dist && tsc",
     "lint": "eslint 'src/**/*.{js,ts}' --quiet "
   },
+  "files": [
+    "dist/*"
+  ],
   "type": "module",
   "keywords": [
     "dotenv",
-    "env"
+    "env",
+    "update dotenv"
   ],
   "repository": {
     "type": "git",
@@ -19,16 +23,18 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
     "dotenv": "^16.4.5",
     "eslint": "^9.0.0",
     "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.7.0"
   },
   "peerDependencies": {
     "dotenv": "*"
   },
-  "author": "Samuel",
+  "author": "Samuel <samdervis@outlook.com>",
   "license": "MIT"
 }
