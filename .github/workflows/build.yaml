@@ -1,0 +1,31 @@
+name: Test and build application
+on: ['push']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [  '18','20' ]
+    name: Test and Build package on Node ${{ matrix.node }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node }}
+        check-latest: true
+        cache: yarn
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: Download dependencies
+      run: yarn install --silent  --immutable
+
+    - name: Check lint issues
+      run: yarn lint
+    - run: yarn build
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: build-artifact
+        path: dist
+        retention-days: 15
