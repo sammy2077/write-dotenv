@@ -1,7 +1,7 @@
 {
   "name": "write-dotenv",
-  "version": "1.0.0",
-  "description": "A package to update env files",
+  "version": "1.0.1",
+  "description": "Accepts and updates the .env or .env.local file",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sammy2077/update-dotenv.git"
+    "url": "git+https://github.com/sammy2077/write-dotenv.git"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
