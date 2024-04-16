@@ -10,23 +10,13 @@ jobs:
     name: Release application to npm
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: '18.x'
+        node-version: latest
         check-latest: true
+        cache: yarn
         registry-url: 'https://registry.npmjs.org'
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: Cache dependencies
-      id: yarn-dependencies
-      uses: actions/cache@v2
-      with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-dependencies-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-              yarn-dependencies-
     - name: Download dependencies
       run: yarn install --silent  --immutable
 
@@ -37,7 +27,7 @@ jobs:
     - run: yarn publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: build-artifact
         path: dist/*

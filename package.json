@@ -1,5 +1,5 @@
 {
-  "name": "update-dotenv",
+  "name": "write-dotenv",
   "version": "1.0.0",
   "description": "A package to update env files",
   "main": "index.js",
