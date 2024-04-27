@@ -41,4 +41,4 @@ export const updateDotenv = async (env: Env, options: Opt = {}) => {
 
     return env
 }
-
+export * from './aws'
